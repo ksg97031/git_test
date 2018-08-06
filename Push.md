@@ -25,26 +25,25 @@ usage: git push [<options>] [<repository> [<refspec>...]]
     --tags                로컬 저장소에서 만든 모든 태그들을 저장소에 업로드합니다.
     -n, --dry-run         업로드(Push)와 관련된 모든 행동을 테스트합니다. 실제 업데이트가 이루어지진 않습니다.
     --porcelain           refs의 실제 심볼릭명이 출력됩니다. (머신이 읽기 편하게 출력 라인이 탭으로 구분되어 있습니다.)
-    -f, --force           강제로 저장소에 업로드합니다.
+    -f, --force           강제로 커밋을 저장소에 업로드합니다.
     --force-with-lease[=<refname>:<expect>]
-                          require old value of ref to be at this value
+                          추가로 생성된 커밋에 병합 없이는 강제로 저장소에 업로드하지 않습니다.(force보단 이 옵션을 추천합니다.)
     --recurse-submodules[=<check|on-demand|no>]
-                          control recursive pushing of submodules
-    --thin                use thin pack
-    --receive-pack <receive-pack>
-                          receive pack program
+                          on-demand: 서브모듈을 모두 업로드합니다. check: 서브모듈이 커밋되지 않으면 실패를 반환합니다.
+    --thin                thin pack으로 업로드합니다.(더 적은 횟수로, 적은양의 오브젝트를 전송하는 방식입니다. 느린 네트워크 속도에 좋습니다,)
+    --receive-pack <receive-pack> \
     --exec <receive-pack>
-                          receive pack program
+                          리모트에 있는 git-receive-pack 프로그램을 가져옵니다.
     -u, --set-upstream    set upstream for git pull/status
     --progress            강제로 진행 상태를 출력합니다. ( stderr는 기본적으로 출력됩니다.)
     --prune               지정한 Refspec 규칙에서 만약 로컬 브랜치가 존재하지 않다면 원격 브랜치도 삭제합니다.
-    --no-verify           bypass pre-push hook
-    --follow-tags         push missing but relevant tags
+    --no-verify           pre-push 훅 기능을 사용하지 않습니다.
+    --follow-tags         태그들과 같이 푸쉬합니다. git 2.4.1 버전 이상부터 기본으로 활성화되어 있습니다.
     --signed[=<yes|no|if-asked>]
                           GPG sign the push
     --atomic              request atomic transaction on remote side
     -o, --push-option <server-specific>
-                          option to transmit
+                          pre-receive, post-receive 훅에 옵션으로 전달되며 해당 옵션이 없을시 기본으로 설정에 push.pushOption이 대신합니다.
     -4, --ipv4            IPv4 주소만 사용합니다.
     -6, --ipv6            IPv6 주소만 사용합니다.
 ```
