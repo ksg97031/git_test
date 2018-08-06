@@ -47,3 +47,81 @@ usage: git push [<options>] [<repository> [<refspec>...]]
     -4, --ipv4            IPv4 주소만 사용합니다.
     -6, --ipv6            IPv6 주소만 사용합니다.
 ```
+
+### 학습
+```sh
+ex) git push {remote} {branch}
+
+$ git remote
+origin
+
+$ git branch
+* master
+
+$ git push origin master
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 520 bytes | 520.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/ksg97031/git_test.git
+```
+
+```sh
+ex) git push {remote} {branch} tags
+
+$ git tag
+100
+200
+
+$ git tag 300
+$ git tag
+100
+200
+300
+
+$ git push origin master --tags
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/ksg97031/git_test.git
+ * [new tag]         300 -> 300
+ 
+$ git log
+commit 0b3fea39602569f627e304231cb7580caf6c0887 (HEAD -> master, tag: 300, origin/master, origin/HEAD)
+... 
+...
+```
+
+```sh
+ex) git push {remote} -d {branch}
+
+$ git branch
+  hi
+* master
+
+$ git push origin -d hi
+To https://github.com/ksg97031/git_test.git
+ - [deleted]         hi
+ 
+$ git branch -d hi 
+Deleted branch hi (was c10d33f).
+```
+
+```sh
+ex) git push {remote} {branch} {force-option}
+
+$ git show
+~
+$ git reset head~
+$ git add .; git commit -am "previous recommit"
+$ git push origin master --force-with-lease
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 834 bytes | 834.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/ksg97031/git_test.git
+ + 0b3fea3...b42b62b master -> master (forced update)
+```
+
